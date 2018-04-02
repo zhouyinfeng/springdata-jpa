@@ -17,7 +17,6 @@ public class GirlSerevice {
         girl1.setAge(17);
         girl1.setCupSize("36");
         girlRespository.save(girl1);
-
         Girl girl2 = new Girl();
         girl2.setAge(17);
         girl2.setCupSize("36");
