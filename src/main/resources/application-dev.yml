@@ -1,0 +1,5 @@
+server:
+  port: 8082
+girl:
+  cupSize: 36
+  age: 18
