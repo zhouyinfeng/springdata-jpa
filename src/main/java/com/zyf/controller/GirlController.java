@@ -4,6 +4,7 @@ import com.zyf.domain.Girl;
 import com.zyf.service.GirlRespository;
 import com.zyf.service.GirlSerevice;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,11 +27,13 @@ public class GirlController {
     }
 
     @PostMapping(value = "/addGirls")
-    public Girl addGirls(@RequestParam("cupSize") String cupSize,
-                         @RequestParam("age") Integer age){
-        Girl girl = new Girl();
-        girl.setAge(age);
-        girl.setCupSize(cupSize);
+    public Girl addGirls(@Validated Girl girl, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            System.out.println(bindingResult.getFieldError().getDefaultMessage());
+            return null;
+        }
+        girl.setAge(girl.getAge());
+        girl.setCupSize(girl.getCupSize());
         return girlRespository.save(girl);
     }
 
