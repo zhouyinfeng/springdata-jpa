@@ -2,6 +2,7 @@ package com.zyf.controller;
 
 import com.zyf.domain.Girl;
 import com.zyf.service.GirlRespository;
+import com.zyf.service.GirlSerevice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,9 @@ public class GirlController {
 
     @Autowired
     private GirlRespository girlRespository;
+
+    @Autowired
+    private GirlSerevice girlSerevice;
 
     @GetMapping(value = "/girls")
     public List<Girl> girlLists() {
@@ -53,5 +57,10 @@ public class GirlController {
     @GetMapping(value = "/queryByAge/{age}")
     public List<Girl> girlByGirl(@PathVariable("age")Integer age){
         return girlRespository.findByAge(age);
+    }
+
+    @PostMapping(value = "/girls/two")
+    public void girlTwo(){
+        girlSerevice.insertTwo();
     }
 }
